@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in with JS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAmBJREFUWEftl99tE0EQxr8R+AHJ52QqIFSAXQGkgpgKSCogVJCkAqCCmApwKkhSQZwKCBWM8VniAdCiOfai0/n2n/eQIpSV/LTend9+8+3sHOGBDXpgPPg/gH6I7P0GDgwwBbALYGyVXgBYEjB/Alw8Y75LzUCSQgryEzgh4DAmkAFmA+AsBSwaaCWiapzTX0WihwGWAI5GzPOYRVFAa5FDA5y3NzTANwI0Tfo78QUk4GjIPAtBBYEcMLeatiGzglSjFDGhYAZ4E1LKC2Q9c9NK01nBfFoHNyK7a+AlgKsIoOUAmPg85QVaicwIeNsIdA+zFhnbNNY3LMRTzRvg84jZeSmcQKrOL+BrI8ptwVwFd3kqigjAU+CFSyUn0Frk2AAf6iAETNQzVpmb2OBd/yPg/ZD5o2Oue+tSRD3xys7eq1OKqJHVMznjumB+nQS0Erkj4LlddFEwT62BJYfErl0UzJMkoNY1rsxciuipLnsAQsHcaRenh2LqSg5YMlArZTmxN9ZqhR8x76WmrGnqXoEApJu6FNFr+a5vErvfp4L5OEkhfd0J+PIvgHxvmtPUPV7xjTMNASZmbUs2Rupbli3Y1m+ZRu6z7jROsl8wOzuDYD/U8eLnqFRVfN8GQaCqJzJmQUQ7OSTGmO8DonGovw4CKUQfNy6mW9RYUUD6x5weyNdutFWPBtoWKra5r8GSgCyUtq5axeteyWWtawCnvhuVXId8JrYlYapfr3XfZD+L9PtrngqytUJtyFYHeVUw7+fcxuSUNYM5Cqe38IVgc4G6WpQslbKAQqfdZv4RKKTaHxw/7SVFzI8ZAAAAAElFTkSuQmCC" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a data-bs-target="#signUpModal" data-bs-toggle="modal"
+                            class="btn btn-secondary mx-2 logged-out">Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-bs-target="#signinModal" data-bs-toggle="modal"
+                            class="btn btn-secondary mx-2 logged-out">Sign in</a>
+                    </li>
+
+                    <button class="btn btnWelcomeUser" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                        <span class="userNameGoogle">
+                            <span class="userName"></span>
+                    </button>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Configuración</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="imagesAvatar">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                    style="border-radius: 100%;" width="150px" height="145px">
+            </div>
+            <div class="info mt-4 contNameUser">
+                <h5 class="userNameConfig"></h5>
+            </div>
+            <div class="info mt-4">
+                <h6>Email:</h6>
+                <span class="emailConfig"></span>
+            </div>
+
+            <a href="" class="btn btn-primary logged-in p-3" id="btnLogout">Cerrar sesion</a>
+        </div>
+    </div>
+
+    <div class="modal" id="signUpModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title ms-auto">Sign up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <form id="form-signup">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
+                            <input type="text" class="form-control" id="userInput" placeholder="Example123" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+                            <input type="email" class="form-control" id="emailInput" placeholder="login@example.com"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                            <input type="password" class="form-control" id="passwordInput" placeholder="********"
+                                required>
+                        </div>
+                        <div class="modal-footer d-flex flex-column bg-white">
+                            <button type="submit" id="btnForm" class="btn btn-primary">Registrarse</button>
+                            <span>¿Ya tienes una cuenta?<a href="" class="px-2" id="iniciarSesion">Inicia
+                                    sesion</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mx-auto centerGIF">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" id="imageGIF" class="displayGIF">
+    </div>
+
+    <!-- SIGN IN MODAL -->
+
+    <div class="modal" id="signinModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title ms-auto">Sign in</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <form id="form-signin">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+                            <input type="email" class="form-control" id="emailInputSignIn"
+                                placeholder="login@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                            <input type="password" class="form-control" id="passwordInputSignIn" placeholder="********">
+                        </div>
+                        <div class="modal-footer d-flex flex-column bg-white">
+                            <button type="submit" class="btn btn-primary">Iniciar sesion con usuario</button>
+                            <span>¿No posees una cuenta?<a href="" class="px-2"
+                                    id="registerButton">Registrarse</a></span>
+                            <button class="buttonGoogle mt-4" id="buttonGoogle">
+                                <span class="button-content">
+                                    <?xml version="1.0" ?><svg id="Capa_1" style="enable-background:new 0 0 150 150;"
+                                        version="1.1" viewBox="0 0 150 150" xml:space="preserve"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <style type="text/css">
+                                            .st0 {
+                                                fill: #1A73E8;
+                                            }
+
+                                            .st1 {
+                                                fill: #EA4335;
+                                            }
+
+                                            .st2 {
+                                                fill: #4285F4;
+                                            }
+
+                                            .st3 {
+                                                fill: #FBBC04;
+                                            }
+
+                                            .st4 {
+                                                fill: #34A853;
+                                            }
+
+                                            .st5 {
+                                                fill: #4CAF50;
+                                            }
+
+                                            .st6 {
+                                                fill: #1E88E5;
+                                            }
+
+                                            .st7 {
+                                                fill: #E53935;
+                                            }
+
+                                            .st8 {
+                                                fill: #C62828;
+                                            }
+
+                                            .st9 {
+                                                fill: #FBC02D;
+                                            }
+
+                                            .st10 {
+                                                fill: #1565C0;
+                                            }
+
+                                            .st11 {
+                                                fill: #2E7D32;
+                                            }
+
+                                            .st12 {
+                                                fill: #F6B704;
+                                            }
+
+                                            .st13 {
+                                                fill: #E54335;
+                                            }
+
+                                            .st14 {
+                                                fill: #4280EF;
+                                            }
+
+                                            .st15 {
+                                                fill: #34A353;
+                                            }
+
+                                            .st16 {
+                                                clip-path: url(#SVGID_2_);
+                                            }
+
+                                            .st17 {
+                                                fill: #188038;
+                                            }
+
+                                            .st18 {
+                                                opacity: 0.2;
+                                                fill: #FFFFFF;
+                                                enable-background: new;
+                                            }
+
+                                            .st19 {
+                                                opacity: 0.3;
+                                                fill: #0D652D;
+                                                enable-background: new;
+                                            }
+
+                                            .st20 {
+                                                clip-path: url(#SVGID_4_);
+                                            }
+
+                                            .st21 {
+                                                opacity: 0.3;
+                                                fill: url(#_45_shadow_1_);
+                                                enable-background: new;
+                                            }
+
+                                            .st22 {
+                                                clip-path: url(#SVGID_6_);
+                                            }
+
+                                            .st23 {
+                                                fill: #FA7B17;
+                                            }
+
+                                            .st24 {
+                                                opacity: 0.3;
+                                                fill: #174EA6;
+                                                enable-background: new;
+                                            }
+
+                                            .st25 {
+                                                opacity: 0.3;
+                                                fill: #A50E0E;
+                                                enable-background: new;
+                                            }
+
+                                            .st26 {
+                                                opacity: 0.3;
+                                                fill: #E37400;
+                                                enable-background: new;
+                                            }
+
+                                            .st27 {
+                                                fill: url(#Finish_mask_1_);
+                                            }
+
+                                            .st28 {
+                                                fill: #FFFFFF;
+                                            }
+
+                                            .st29 {
+                                                fill: #0C9D58;
+                                            }
+
+                                            .st30 {
+                                                opacity: 0.2;
+                                                fill: #004D40;
+                                                enable-background: new;
+                                            }
+
+                                            .st31 {
+                                                opacity: 0.2;
+                                                fill: #3E2723;
+                                                enable-background: new;
+                                            }
+
+                                            .st32 {
+                                                fill: #FFC107;
+                                            }
+
+                                            .st33 {
+                                                opacity: 0.2;
+                                                fill: #1A237E;
+                                                enable-background: new;
+                                            }
+
+                                            .st34 {
+                                                opacity: 0.2;
+                                            }
+
+                                            .st35 {
+                                                fill: #1A237E;
+                                            }
+
+                                            .st36 {
+                                                fill: url(#SVGID_7_);
+                                            }
+
+                                            .st37 {
+                                                fill: #FBBC05;
+                                            }
+
+                                            .st38 {
+                                                clip-path: url(#SVGID_9_);
+                                                fill: #E53935;
+                                            }
+
+                                            .st39 {
+                                                clip-path: url(#SVGID_11_);
+                                                fill: #FBC02D;
+                                            }
+
+                                            .st40 {
+                                                clip-path: url(#SVGID_13_);
+                                                fill: #E53935;
+                                            }
+
+                                            .st41 {
+                                                clip-path: url(#SVGID_15_);
+                                                fill: #FBC02D;
+                                            }
+                                        </style>
+                                        <g>
+                                            <path class="st14"
+                                                d="M120,76.1c0-3.1-0.3-6.3-0.8-9.3H75.9v17.7h24.8c-1,5.7-4.3,10.7-9.2,13.9l14.8,11.5   C115,101.8,120,90,120,76.1L120,76.1z" />
+                                            <path class="st15"
+                                                d="M75.9,120.9c12.4,0,22.8-4.1,30.4-11.1L91.5,98.4c-4.1,2.8-9.4,4.4-15.6,4.4c-12,0-22.1-8.1-25.8-18.9   L34.9,95.6C42.7,111.1,58.5,120.9,75.9,120.9z" />
+                                            <path class="st12"
+                                                d="M50.1,83.8c-1.9-5.7-1.9-11.9,0-17.6L34.9,54.4c-6.5,13-6.5,28.3,0,41.2L50.1,83.8z" />
+                                            <path class="st13"
+                                                d="M75.9,47.3c6.5-0.1,12.9,2.4,17.6,6.9L106.6,41C98.3,33.2,87.3,29,75.9,29.1c-17.4,0-33.2,9.8-41,25.3   l15.2,11.8C53.8,55.3,63.9,47.3,75.9,47.3z" />
+                                        </g>
+                                    </svg> Iniciar con Google
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="title titleInicioNull">Inicia sesion para obtener mas info.</h1>
+    </div>
+
+    <div class="container cardList">
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+    <script type="module" src="./main.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        const buttonSesion = document.querySelector('#iniciarSesion')
+        const buttonRegister = document.querySelector('#registerButton')
+
+        buttonSesion.addEventListener('click', (e) => {
+            e.preventDefault()
+            $('#signinModal').modal('show')
+            $('#signUpModal').modal('hide')
+        });
+
+        buttonRegister.addEventListener('click', (e) => {
+            e.preventDefault()
+            $('#signinModal').modal('hide')
+            $('#signUpModal').modal('show')
+        })
+
+        $(window).load(function () {
+            $('#imagerGIF').removeClass('.displayGIF')
+        });
+
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

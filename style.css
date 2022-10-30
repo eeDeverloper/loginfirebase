@@ -1,0 +1,162 @@
+@import url('http://fonts.cdnfonts.com/css/dm-sans');
+
+.alert {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.badge.bg-light {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 10px 0;
+}
+
+.title {
+    text-align: center;
+    margin-top: 20%;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    color: black;
+}
+
+.subtitle {
+    text-align: center;
+    margin-top: 12%;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+    color: black;
+}
+
+/* GOOGLE BUTTON */
+.buttonGoogle {
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: 700;
+    padding: 4px;
+    border: none;
+    color: black;
+}
+
+.buttonGoogle .button-content {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 0.7em 1.5em;
+    padding-left: 1.2em;
+}
+
+.buttonGoogle svg {
+    width: 25px;
+    height: 25px;
+    margin-right: 12px;
+    color: #ff0000;
+    transition: transform 0.3s;
+}
+
+.buttonGoogle:hover svg {
+    transform: scale(1.2);
+}
+
+/* FACEBOOK BUTTON */
+.buttonFacebook {
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 700;
+    padding: 4px;
+    border: none;
+    color: black;
+}
+
+.buttonFacebook .button-content {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background: white;
+    padding: 0.7em 1.5em;
+    padding-left: 1.2em;
+}
+
+.buttonFacebook svg {
+    width: 22px;
+    height: 22px;
+    margin-right: 12px;
+    color: #ff0000;
+    transition: transform 0.3s;
+}
+
+.buttonFacebook:hover svg {
+    transform: scale(1.2);
+}
+
+.btn.btnWelcomeUser{
+    font-size: 17px;
+    font-weight: 700;
+
+}
+
+.userName{
+    font-weight: 200;
+    font-size: 15px;
+}
+
+.userNameAvatar{
+    font-weight: 100;
+}
+
+.imagesAvatar{
+    justify-content: start;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+}
+
+.info h6{
+    font-weight: 700;
+    font-size: 15px;
+}
+
+#btnLogout{
+    position: relative;
+    top: 42%;
+    height: 60px;
+    font-size: 16px;
+}
+
+.imgAvatarSignIn{
+    border-radius: 100%;
+}
+
+.spanTextNavbar{
+    font-weight: 100;
+}
+
+.btn.btnWelcomeUser:hover{
+    background-color: white;
+    transition: 0.3s linear;
+    color: black;
+}
+
+.centerGIF{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.displayGIF{
+    display: none;
+}
+
+.spanTextNavbarUSER{
+    font-weight: 700;
+    font-size: 25px;
+    color: black;
+
+}
